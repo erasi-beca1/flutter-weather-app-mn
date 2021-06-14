@@ -7,7 +7,6 @@ import 'package:flutter_weather_mn/theme/app_theme.dart';
 import 'package:flutter_weather_mn/views/forecast/forecast.dart';
 import 'package:flutter_weather_mn/views/home/dialog_overlay.dart';
 import 'package:flutter_weather_mn/views/home/home.dart';
-import 'package:flutter_weather_mn/views/menu/menu.dart';
 import 'package:flutter_weather_mn/services/location.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,7 +63,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
         ),
       ),
     );
-
     _playAnimation();
   }
 
@@ -116,17 +114,11 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
       create: (_) => ThemeManager(),
       child: Consumer<ThemeManager>(builder: (_, manager, __) {
         return MaterialApp(
-          title: "Beautiful Weather",
+          title: "App Weather",
           theme: manager.themeData,
           home: Scaffold(
             body: Stack(
               children: [
-                Menu(
-                  isDrawerOpen: isDrawerOpen,
-                  onAccentSelect: setAccent,
-                  accent: selectedAccent,
-                  onNavPress: toggleMenu,
-                ),
                 Positioned(
                   child: _translateBuilder(
                     Btn(

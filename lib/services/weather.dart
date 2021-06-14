@@ -1,17 +1,17 @@
 class Weather {
-  int date;
-  int sunset;
-  int sunrise;
+  int date; //ngày
+  int sunset; //mặt trời mọc
+  int sunrise; //mặt trời lặn
   String name;
-  int timezone;
-  int humidity;
+  int timezone; //múi giờ
+  int humidity; //độ ẩm
   int condition;
-  double latitude;
-  double longitude;
-  String windSpeed;
-  double tempMin;
-  double tempMax;
-  double temperature;
+  double latitude; //vĩ độ
+  double longitude; //kinh độ
+  String windSpeed; //tốc độ gió
+  double tempMin; //nhiệt độ thấp nhất
+  double tempMax; //nhiệt độ cao nhất
+  double temperature; //nhiệt độ hiện tại
   String description;
 
   Weather({
@@ -32,22 +32,23 @@ class Weather {
   });
 
   String getIcon({String overrideNight}) {
-    DateTime now = DateTime.now().toUtc();
+    DateTime now = DateTime.now().toUtc(); //lây thời gian theo múi giờ UTC (VN là GMT+7)
     DateTime zoneTime = now.add(Duration(seconds: timezone ?? 0));
     String night = zoneTime.hour > 18 || zoneTime.hour <= 6 ? "-night" : "";
 
     if (overrideNight != null) {
       night = overrideNight;
     }
-
+    //Đừng dẫn xét điều kiện (condition) https://openweathermap.org/weather-conditions
+    //trả về tình trạng theo điều kiện
     if (condition >= 200 && condition < 300) {
-      return "thunder";
+      return "thunder"; // sấm sét
     } else if (condition >= 300 && condition <= 321) {
-      return "rain";
+      return "drizzle"; //mưa phùn
     } else if (condition >= 500 && condition <= 504) {
       return "rain";
     } else if (condition >= 600 && condition <= 622) {
-      return "snow";
+      return "snow"; //tuyết
     } else if (condition == 800) {
       return "clear" + night;
     } else if (condition == 801) {
@@ -75,6 +76,10 @@ class Weather {
         'date: $date,'
         'min: $tempMin,'
         'max: $tempMax';
-    return 'Weather($data1, $data2, windSpeed: $windSpeed, timezone: $timezone, latitude: $latitude, longitude $longitude)';
+    return 'Weather($data1, $data2, '
+        'windSpeed: $windSpeed, '
+        'timezone: $timezone, '
+        'latitude: $latitude, '
+        'longitude $longitude)';
   }
 }

@@ -160,15 +160,15 @@ class LocationView extends StatelessWidget {
                   gradient: GradientValues().gradients[accent].gradient,
                 ),
                 WeatherDetailChip(
-                  icon: "wind",
-                  text: "wind",
-                  value: '${weather.windSpeed}m/s',
-                  gradient: GradientValues().gradients[accent].gradient,
-                ),
-                WeatherDetailChip(
                   icon: "drop",
                   text: "humidity",
                   value: '${weather.humidity}%',
+                  gradient: GradientValues().gradients[accent].gradient,
+                ),
+                WeatherDetailChip(
+                  icon: "wind",
+                  text: "wind",
+                  value: '${weather.windSpeed}m/s',
                   gradient: GradientValues().gradients[accent].gradient,
                 ),
               ],
@@ -187,8 +187,7 @@ class LocationView extends StatelessWidget {
   }
 
   String getSunriseTime(int date, int zone) {
-    DateTime now =
-        DateTime.fromMillisecondsSinceEpoch(date * 1000, isUtc: true);
+    DateTime now = DateTime.fromMillisecondsSinceEpoch(date * 1000, isUtc: true);
     DateTime zoneTime = now.add(Duration(seconds: zone ?? 0));
     final int hour = zoneTime.hour > 12 ? zoneTime.hour - 12 : zoneTime.hour;
     return '$hour:${zoneTime.minute}'.toUpperCase();
@@ -210,7 +209,7 @@ class LocationView extends StatelessWidget {
     DateTime zoneTime = now.add(Duration(seconds: zone ?? 0));
 
     final int hour = zoneTime.hour;
-
+    //Lời chúc theo giờ
     if (hour > 19 || hour <= 5) {
       return "GOOD NIGHT";
     } else if (hour > 5 && hour < 12) {

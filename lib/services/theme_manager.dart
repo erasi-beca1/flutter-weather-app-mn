@@ -43,7 +43,7 @@ class ThemeManager with ChangeNotifier {
   Color get textColor {
     return _theme == AppTheme.Dark ? Colors.white : Colors.black87;
   }
-
+  ///
   setTheme(AppTheme theme) async {
     _theme = theme;
     _themeData = appThemeData[theme];

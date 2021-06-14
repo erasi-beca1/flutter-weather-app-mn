@@ -150,28 +150,6 @@ class _DailyDetailState extends State<DailyDetail> {
                 ],
               ),
             ),
-            AnimatedContainer(
-              height: expanded ? 104 : 0,
-              curve: Curves.easeInOutCirc,
-              duration: Duration(milliseconds: 500),
-              child: Column(
-                children: [
-                  Divider(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      getExpandRowItem("sun", "sunrise", getSunrise(weather)),
-                      getExpandRowItem(
-                          "wind", "wind", "${weather.windSpeed}m/s"),
-                      getExpandRowItem(
-                          "drop", "humidity", "${weather.humidity}%"),
-                    ],
-                  ),
-                ],
-              ),
-            )
           ],
         ),
       ),

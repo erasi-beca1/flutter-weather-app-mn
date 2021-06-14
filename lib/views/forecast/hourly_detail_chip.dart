@@ -25,14 +25,14 @@ class _HourlyDetailState extends State<HourlyDetail> {
     final Weather weather = widget.detail;
     final int accentIndex = widget.accent;
     final double width = expanded ? 200 : 80;
-    final double innerWidth = expanded ? 50 : 0;
+
     return InkWell(
       onTap: toggleExpand,
       child: AnimatedContainer(
         curve: Curves.easeInOutCirc,
-        padding: EdgeInsets.symmetric(vertical: 16),
         duration: Duration(milliseconds: 500),
         margin: EdgeInsets.only(right: 24, top: 12, bottom: 12),
+        padding: EdgeInsets.symmetric(vertical: 16),
         width: width,
         decoration: BoxDecoration(
           boxShadow: <BoxShadow>[
@@ -66,41 +66,6 @@ class _HourlyDetailState extends State<HourlyDetail> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AnimatedContainer(
-                  width: innerWidth,
-                  duration: Duration(milliseconds: 500),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 13),
-                      Container(
-                        width: 42,
-                        height: 42,
-                        child: FlareActor(
-                          "assets/animations/icons.flr",
-                          alignment: Alignment.center,
-                          animation: "drop",
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 20,
-                        ),
-                        child: AnimatedDefaultTextStyle(
-                          child: Text(
-                            "${weather.humidity}%",
-                          ),
-                          duration: Duration(milliseconds: 500),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: expanded ? 10 : 0,
-                            fontFamily: "Montserrat",
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Container(
                   width: 80,
                   child: Column(
@@ -130,41 +95,6 @@ class _HourlyDetailState extends State<HourlyDetail> {
                     ],
                   ),
                 ),
-                AnimatedContainer(
-                  width: innerWidth,
-                  duration: Duration(milliseconds: 500),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 13),
-                      Container(
-                        width: 42,
-                        height: 42,
-                        child: FlareActor(
-                          "assets/animations/icons.flr",
-                          alignment: Alignment.center,
-                          animation: "wind",
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: 20,
-                        ),
-                        child: AnimatedDefaultTextStyle(
-                          child: Text(
-                            "${weather.windSpeed}m/s",
-                          ),
-                          duration: Duration(milliseconds: 500),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: expanded ? 10 : 0,
-                            fontFamily: "Montserrat",
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
               ],
             ),
           ],

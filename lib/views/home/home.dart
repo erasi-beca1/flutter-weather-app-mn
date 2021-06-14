@@ -36,9 +36,9 @@ class Home extends StatelessWidget {
     final double x = isDrawerOpen ? (size.width - size.width * 0.65) / 2 : 0;
 
     return GestureDetector(
-      onHorizontalDragEnd: onDragEnd,
-      onHorizontalDragStart: onDragStart,
-      onHorizontalDragUpdate: onDragUpdate,
+      //onHorizontalDragEnd: onDragEnd,
+      // onHorizontalDragStart: onDragStart,
+      // onHorizontalDragUpdate: onDragUpdate,
       child: AnimatedContainer(
         padding: EdgeInsets.all(24),
         curve: Curves.easeOutCubic,
@@ -87,12 +87,12 @@ class Home extends StatelessWidget {
     );
   }
 
-  void onDragEnd(DragEndDetails details) {
-    double diff = homeDragData.start - homeDragData.end;
-    if ((isDrawerOpen && diff > 0) || (!isDrawerOpen && diff < 0)) {
-      onNavPress();
-    }
-  }
+  // void onDragEnd(DragEndDetails details) {
+  //   double diff = homeDragData.start - homeDragData.end;
+  //   if ((isDrawerOpen && diff > 0) || (!isDrawerOpen && diff < 0)) {
+  //     onNavPress();
+  //   }
+  // }
 
   void onDragStart(DragStartDetails details) =>
       homeDragData.start = details.globalPosition.dx;

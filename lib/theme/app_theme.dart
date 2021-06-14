@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 enum AppTheme { White, Dark }
-
-/// Returns enum value name without enum class name.
+/// trả về enum value name không cần enum class name.
 String enumName(AppTheme anyEnum) {
   return anyEnum.toString().split('.')[1];
 }
 
 final appThemeData = {
-  AppTheme.White: ThemeData(
+  AppTheme.White: ThemeData( //constructor dart support
       brightness: Brightness.light,
       primaryColor: Colors.white,
       fontFamily: "Montserrat"),

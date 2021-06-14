@@ -4,18 +4,18 @@ import 'package:flutter_weather_mn/services/api_helper.dart';
 import 'package:geolocator/geolocator.dart';
 
 class Location {
-  double lat;
-  double lon;
+  double lat; // latitude - vĩ độ
+  double lon; // longitude - kinh độ
   Weather weather;
   List<Weather> daily = List<Weather>();
   List<Weather> hourly = List<Weather>();
 
-  String apiKey = "ee3ea3c138da18505bb8125cb2d16611";
+  String apiKey = "c2306e090d3aba759ec2d44587e91e87";
 
   Future<void> getCurrentLocation() async {
     try {
-      Position position = await Geolocator()
-          .getCurrentPosition(desiredAccuracy: LocationAccuracy.lowest);
+      Position position = await Geolocator() //geolocator là bộ định vị địa lý dart support
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       lat = position.latitude;
       lon = position.longitude;
     } catch (e) {
