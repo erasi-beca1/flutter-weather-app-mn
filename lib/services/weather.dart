@@ -40,11 +40,11 @@ class Weather {
       night = overrideNight;
     }
     //Đừng dẫn xét điều kiện (condition) https://openweathermap.org/weather-conditions
-    //trả về tình trạng theo điều kiện
+    //get icon theo condition
     if (condition >= 200 && condition < 300) {
       return "thunder"; // sấm sét
     } else if (condition >= 300 && condition <= 321) {
-      return "drizzle"; //mưa phùn
+      return "rain";
     } else if (condition >= 500 && condition <= 504) {
       return "rain";
     } else if (condition >= 600 && condition <= 622) {
