@@ -42,8 +42,6 @@ class Forecast extends StatelessWidget {
     final double y = !isWindowOpen ? size.height + 80 : 0;
     Color bgColor = Provider.of<ThemeManager>(context).bgColor;
 
-    // dynamic currentGradient = GradientValues().gradients[accent].gradient
-
     return AnimatedContainer(
       width: size.width,
       height: size.height,
@@ -146,7 +144,6 @@ class Forecast extends StatelessWidget {
                 ),
                 _translateBuilder(
                   DailyView(
-                    accent: accent,
                     daily: location.getDaily(),
                   ),
                 ),
