@@ -27,13 +27,6 @@ class HourlyView extends StatelessWidget {
   }
 
   List<Widget> getHours() {
-    return hourly
-        .map(
-          (e) => HourlyDetail(
-            accent: accent,
-            detail: e,
-          ),
-        )
-        .toList();
+    return hourly.map((e) => HourlyDetail(accent: accent, detail: e)).toList();
   }
 }
