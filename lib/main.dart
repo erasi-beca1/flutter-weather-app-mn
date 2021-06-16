@@ -35,7 +35,7 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     getLocation();
-    getAccent();
+
 
     _controller = AnimationController(
       duration: const Duration(milliseconds: 2000),
@@ -90,14 +90,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
     }
   }
 
-  Future<void> _playReverseMenuAnimation() async {
-    try {
-      await _controllerMenu.reverse().orCancel;
-    } on TickerCanceled {
-      debugPrint("menu reverse animation cancelled");
-    }
-  }
-
   Future<void> _playForecastAnimation() async {
     try {
       await _controllerForecast.forward().orCancel;
@@ -109,7 +101,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays([]);
-
     return ChangeNotifierProvider(
       create: (_) => ThemeManager(),
       child: Consumer<ThemeManager>(builder: (_, manager, __) {
@@ -122,13 +113,12 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
                 Positioned(
                   child: _translateBuilder(
                     Btn(
-                      onPress: onRefresh,
+                      onPress: () => toggleDialog(true),
                       child: Icon(
-                        Icons.refresh,
+                        Icons.location_on,
                         size: 32,
                       ),
                     ),
-                    amount: 0.6,
                   ),
                   top: 24,
                   left: 24,
@@ -165,25 +155,11 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
                   top: 24,
                   left: 98,
                 ),
-                Positioned(
-                  child: _translateBuilder(
-                    Btn(
-                      onPress: () => toggleDialog(true),
-                      child: Icon(
-                        Icons.location_on,
-                        size: 32,
-                      ),
-                    ),
-                  ),
-                  top: 24,
-                  right: 98,
-                ),
                 Home(
                   controller: _controller.view,
                   isDrawerOpen: isDrawerOpen,
                   onMorePress: toggleForecast,
                   onNavPress: toggleMenu,
-                  accent: selectedAccent,
                   location: location,
                   loading: loading,
                 ),
@@ -198,7 +174,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
                   controller: _controllerForecast,
                   isWindowOpen: isForecastOpen,
                   onClosePress: toggleForecast,
-                  accent: selectedAccent,
                   location: location,
                 )
               ],
@@ -249,8 +224,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
     if (!isDrawerOpen) {
       _controllerMenu.reset();
       _playMenuAnimation();
-    } else {
-      _playReverseMenuAnimation();
     }
     setState(() {
       isDrawerOpen = !isDrawerOpen;
@@ -260,24 +233,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
   void toggleDialog(bool value) {
     setState(() {
       isDialogOpen = value;
-    });
-  }
-
-  void setAccent(int i) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt("accent_preference", i);
-
-    setState(() {
-      selectedAccent = i;
-    });
-  }
-
-  void getAccent() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int preferredAccent = prefs.getInt("accent_preference") ?? 0;
-
-    setState(() {
-      selectedAccent = preferredAccent;
     });
   }
 
@@ -295,11 +250,6 @@ class _MainAppState extends State<MainApp> with TickerProviderStateMixin {
     return preferredCity;
   }
 
-  void onRefresh() async {
-    await setCity("");
-
-    getLocation();
-  }
 
   void onSubmit(String city) async {
     await setCity(city);
