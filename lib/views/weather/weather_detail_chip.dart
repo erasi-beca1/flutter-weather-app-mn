@@ -17,7 +17,7 @@ class WeatherDetailChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final double width = (size.width - 108) / 3;
+    final double width = (size.width - 108) / 4;
 
     return Container(
       width: width,
@@ -68,7 +68,7 @@ class WeatherDetailChip extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 15,
               ),
             ),
           )
