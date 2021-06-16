@@ -13,9 +13,6 @@ class Home extends StatelessWidget {
   final void Function() onNavPress;
   final void Function() onMorePress;
   final Animation<double> controller;
-
-  final DragData homeDragData = DragData();
-
   Home({
     @required this.isDrawerOpen,
     @required this.onMorePress,
@@ -29,16 +26,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final double factor = isDrawerOpen ? 0.65 : 1;
+    final double factor = isDrawerOpen ? 0.8 : 1;
     Color bgColor = Provider.of<ThemeManager>(context).bgColor;
 
-    final double y = isDrawerOpen ? 120 : 0;
-    final double x = isDrawerOpen ? (size.width - size.width * 0.65) / 2 : 0;
+    final double y = isDrawerOpen ? 115 : 0;
+    final double x = isDrawerOpen ? (size.width - size.width * 0.8) / 2 : 0;
 
     return GestureDetector(
-      //onHorizontalDragEnd: onDragEnd,
-      // onHorizontalDragStart: onDragStart,
-      // onHorizontalDragUpdate: onDragUpdate,
       child: AnimatedContainer(
         padding: EdgeInsets.all(24),
         curve: Curves.easeOutCubic,
@@ -73,12 +67,10 @@ class Home extends StatelessWidget {
               ),
             ),
             Container(
-              height: size.height - 112,
+              height: size.height - 120,
               child: LocationScreen(
                 controller: controller,
                 location: location,
-                loading: loading,
-                accent: accent,
               ),
             ),
           ],
@@ -86,35 +78,5 @@ class Home extends StatelessWidget {
       ),
     );
   }
-
-  // void onDragEnd(DragEndDetails details) {
-  //   double diff = homeDragData.start - homeDragData.end;
-  //   if ((isDrawerOpen && diff > 0) || (!isDrawerOpen && diff < 0)) {
-  //     onNavPress();
-  //   }
-  // }
-
-  void onDragStart(DragStartDetails details) =>
-      homeDragData.start = details.globalPosition.dx;
-
-  void onDragUpdate(DragUpdateDetails details) =>
-      homeDragData.end = details.globalPosition.dx;
 }
 
-class DragData {
-  double _start = 0;
-  double _end = 0;
-
-  get start => _start;
-
-  get end => _end;
-
-  set start(start) => _start = start;
-
-  set end(end) => _end = end;
-
-  @override
-  String toString() {
-    return 'DragData(start: $_start, end: $_end)';
-  }
-}
