@@ -147,12 +147,10 @@ class LocationView extends StatelessWidget {
           opacity: opacity.value,
           child: Container(
             transform: Matrix4.translationValues(0, yTranslate.value * 0.5, 0),
-            padding: EdgeInsets.symmetric(
-              horizontal: 4,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+            child:
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children:  [
                 WeatherDetailChip(
                   icon: "sun",
                   text: "sunrise",
@@ -171,10 +169,16 @@ class LocationView extends StatelessWidget {
                   value: '${weather.windSpeed}m/s',
                   gradient: GradientValues().gradients[accent].gradient,
                 ),
+                WeatherDetailChip(
+                  icon: "sun",
+                  text: "sunset",
+                  value: '${getSunsetTime(weather.sunset, weather.timezone)}',
+                  gradient: GradientValues().gradients[accent].gradient,
+                ),
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }
@@ -190,6 +194,12 @@ class LocationView extends StatelessWidget {
     DateTime now = DateTime.fromMillisecondsSinceEpoch(date * 1000, isUtc: true);
     DateTime zoneTime = now.add(Duration(seconds: zone ?? 0));
     final int hour = zoneTime.hour > 12 ? zoneTime.hour - 12 : zoneTime.hour;
+    return '$hour:${zoneTime.minute}'.toUpperCase();
+  }
+  String getSunsetTime(int date, int zone) {
+    DateTime now = DateTime.fromMillisecondsSinceEpoch(date * 1000, isUtc: true);
+    DateTime zoneTime = now.add(Duration(seconds: zone ?? 0));
+    final int hour = zoneTime.hour < 12 ? zoneTime.hour + 12 : zoneTime.hour;
     return '$hour:${zoneTime.minute}'.toUpperCase();
   }
 
