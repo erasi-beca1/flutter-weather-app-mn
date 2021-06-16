@@ -37,7 +37,6 @@ class Hamburger extends StatelessWidget {
                       height: _barHeight,
                       color: _hamColor,
                       margin: EdgeInsets.all(3),
-                      curve: Curves.easeInExpo,
                       duration: Duration(milliseconds: 400),
                       transform: Matrix4.translationValues(translateX, 0, 0),
                     ),
