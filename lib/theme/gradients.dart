@@ -30,8 +30,10 @@ class GradientValues {
   List<Gradient> _gradients = [
     Gradient(
       name: "A Lost Memory",
-      from: Color(0xFFdd5e89),
-      to: Color(0xFFf7bb97),
+      from: Color(0xFF5b86e5),
+      to: Color(0xFF36d1dc),
+      // from: Color(0xFFdd5e89),
+      // to: Color(0xFFf7bb97),
     ),
     Gradient(
       name: "Scooter",
