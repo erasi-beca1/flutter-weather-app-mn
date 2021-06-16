@@ -27,9 +27,8 @@ class _HourlyDetailState extends State<HourlyDetail> {
     final double width = expanded ? 200 : 80;
 
     return InkWell(
-      onTap: toggleExpand,
+      //onTap: toggleExpand,
       child: AnimatedContainer(
-        curve: Curves.easeInOutCirc,
         duration: Duration(milliseconds: 500),
         margin: EdgeInsets.only(right: 24, top: 12, bottom: 12),
         padding: EdgeInsets.symmetric(vertical: 16),
@@ -57,9 +56,6 @@ class _HourlyDetailState extends State<HourlyDetail> {
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
-                overflow: TextOverflow.fade,
-                softWrap: false,
-                maxLines: 1,
               ),
             ),
             Row(
