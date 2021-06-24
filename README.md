@@ -1,6 +1,8 @@
 # flutter_weather
 
-A new Flutter project.
+Beautiful Weather, an app built using flutter that shows the current weather.
+
+Very simple app with the following features.
 
 ## Getting Started
 
