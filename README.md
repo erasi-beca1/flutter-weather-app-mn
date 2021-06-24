@@ -7,8 +7,8 @@ Very simple app with the following features.
 - Dark and Light theme support.
 - View your current location/any city weather details.
 - View the weather details for the next 48 hours/next 7 days.
+![image](https://user-images.githubusercontent.com/54151865/123304020-a48d0900-d548-11eb-8def-3e2e734830b2.png) ![image](https://user-images.githubusercontent.com/54151865/123304043-aa82ea00-d548-11eb-8678-3a5dc184e4a5.png) ![image](https://user-images.githubusercontent.com/54151865/123304062-ad7dda80-d548-11eb-8580-3895f5e2cd10.png)
 
-![image](https://user-images.githubusercontent.com/54151865/123303835-70194d00-d548-11eb-8ea1-155f30f6d3fd.png)
 ## Motivation
 Built this app to learn and get familiar with flutter and dart.
 
